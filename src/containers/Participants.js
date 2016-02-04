@@ -2,7 +2,8 @@ import React from 'react';
 import Menu from '../components/shared/Menu';
 import MenuButtonNames from '../lib/MenuButtonNames';
 import Student from '../components/participants/Student';
-import API from '../lib/API';
+import ParticipantsActionCreator from '../action_creators/ParticipantsActionCreator';
+import ParticipantsStore from '../stores/ParticipantsStore';
 
 class Participants extends React.Component {
   constructor(props) {
@@ -10,17 +11,26 @@ class Participants extends React.Component {
     this.state = {
       students: []
     }
+    this._onChange = this.onChange.bind(this);
   }
 
   componentWillMount() {
+    ParticipantsStore.addChangeListener(this._onChange);
+
     const timeout = setTimeout(
       () => {
-        this.setState({
-          students: new API().getStudents()
-        });
+        ParticipantsActionCreator.requestStudents();
         clearTimeout(timeout);
       }, 1000
     );
+  }
+
+  componentWillUnmount() {
+    ParticipantsStore.removeChangeListener(this._onChange);
+  }
+
+  onChange() {
+    this.setState({ students: ParticipantsStore.getStudents() });
   }
 
   renderStudents() {
