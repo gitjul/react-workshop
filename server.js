@@ -1,12 +1,12 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 
-var config = require('./webpack/development.config.js');
+import config from './webpack/development.config.js';
 config.entry.unshift("webpack-dev-server/client?http://localhost:1337", "webpack/hot/dev-server");
 
-var port = 1337;
-var ip = '127.0.0.1';
-new WebpackDevServer(webpack(config), {
+const port = 1337;
+const ip = '127.0.0.1';
+const app = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     historyApiFallback: true,
     stats: { chunks: false }
