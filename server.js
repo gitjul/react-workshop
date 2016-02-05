@@ -1,26 +1,33 @@
 import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
+import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebpackHotMiddleware from 'webpack-hot-middleware';
 import { match, RoutingContext } from 'react-router';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Routes from './src/routes';
+import Express from 'express';
+import http from 'http';
 
 import config from './webpack/development.config.js';
-config.entry.unshift("webpack-dev-server/client?http://localhost:1337", "webpack/hot/dev-server");
+import DefaultConfig from './webpack/default.config.js';
+//config.entry.unshift("webpack-dev-server/client?http://localhost:1337", "webpack/hot/dev-server");
 
 const port = 1337;
 const ip = '127.0.0.1';
 
 const compiler = webpack(config);
-const app = new WebpackDevServer(compiler, {
+const app = Express();
+
+app.use(Express.static(DefaultConfig.Dist));
+
+//app.use(WebpackHotMiddleware(compiler, {
+  //path: '/__webpack_hmr'
+//}));
+
+app.use(WebpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
     historyApiFallback: true,
     stats: { chunks: false }
-});
-
-app.use(WebpackHotMiddleware(compiler, {
-  path: '/__webpack_hmr'
 }));
 
 const indexHtml = (renderProps) => {
@@ -46,6 +53,7 @@ const indexHtml = (renderProps) => {
 }
 
 app.use((req, res) => {
+  console.log(req.url);
   match({ routes: Routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message);
@@ -60,7 +68,7 @@ app.use((req, res) => {
   })
 });
 
-app.listen(port, ip, function (err) {
+http.createServer(app).listen(port, ip, function (err) {
     if(err) {
       return console.log(err);
     }

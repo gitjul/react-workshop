@@ -6,7 +6,7 @@ var DefaultConfig = require('./default.config.js');
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['webpack-hot-middleware/client?reload=true'].
+  entry: [].
     concat(DefaultConfig.Entries),
   output: {
     path: DefaultConfig.Dist,
