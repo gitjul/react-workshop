@@ -19,11 +19,6 @@ module.exports = {
   plugins: [
     new Webpack.optimize.OccurenceOrderPlugin(),
     new Webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin(DefaultConfig.BundleName + '.css'),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '..', 'views', 'index.html'),
-      inject: 'body',
-      filename: 'index.html'
-    })
+    new ExtractTextPlugin(DefaultConfig.BundleName + '.css')
   ]
 };

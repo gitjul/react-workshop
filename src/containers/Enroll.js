@@ -4,7 +4,6 @@ import MenuButtonNames from '../lib/MenuButtonNames';
 import BasicInfo from '../components/enroll/BasicInfo';
 import Preferences from '../components/enroll/Preferences';
 import API from '../lib/API';
-import history from '../history.js'
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class Enroll extends React.Component {
   }
 
   redirectToList() {
-    return history.pushState(null, "/participants");
+    //return history.pushState(null, "/participants");
   }
 
   render() {
