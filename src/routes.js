@@ -5,6 +5,7 @@ import Layout from './containers/Layout';
 import Main from "./containers/Main";
 import Participants from "./containers/Participants";
 import Enroll from "./containers/Enroll";
+import EditStudent from "./containers/EditStudent";
 
 export default (
   <Router history={history}>
@@ -12,6 +13,7 @@ export default (
       <IndexRoute component={Main} />
       <Route path="participants" component={Participants} />
       <Route path="enroll" component={Enroll} />
+      <Route path="edit/:id" component={EditStudent} />
       <Route path="*" component={Main} />
     </Route>
   </Router>

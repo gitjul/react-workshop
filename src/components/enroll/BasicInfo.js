@@ -34,16 +34,18 @@ class BasicInfo extends React.Component {
   }
 
   render() {
+    const { name, surname } = this.props.student
+
     return (
       <fieldset>
         <legend onClick={this.toggleForm.bind(this)}>Basic Info</legend>
         <div className={this.formVisibilityCss()}>
           <label htmlFor="name">First Name</label>
           {this.renderErrorForField("name")}
-          <input type="text" name="name" placeholder="Arien" ref="name" />
+          <input type="text" name="name" placeholder="Arien" ref="name" defaultValue={name}/>
           <label htmlFor="surname">Surname</label>
           {this.renderErrorForField("surname")}
-          <input type="text" name="surname" placeholder="Doriath" ref="surname" />
+          <input type="text" name="surname" placeholder="Doriath" ref="surname" defaultValue={surname} />
         </div>
       </fieldset>
     )

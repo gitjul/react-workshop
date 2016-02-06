@@ -5,7 +5,7 @@ class Preferences extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: true
     }
   }
 
@@ -34,6 +34,8 @@ class Preferences extends React.Component {
   }
 
   render() {
+    const { house, pet } = this.props.student
+
     return (
       <fieldset>
         <legend onClick={this.toggleForm.bind(this)}>Magical Preferences</legend>
@@ -41,7 +43,7 @@ class Preferences extends React.Component {
           <label htmlFor="house">House</label>
           {this.renderErrorForField("house")}
           <div className="select-wrapper">
-            <select name="house" defaultValue="" ref="house">
+            <select name="house" defaultValue={house} ref="house">
               <option value="" disabled>-- Our choices show what we truly are --</option>
               <option value="gryffindor">Gryffindor</option>
               <option value="slytherin">Slytherin</option>
@@ -52,7 +54,7 @@ class Preferences extends React.Component {
           <label htmlFor="pet">Pet Companion</label>
           {this.renderErrorForField("pet")}
           <div className="select-wrapper">
-            <select name="pet" defaultValue="" ref="pet">
+            <select name="pet" defaultValue={pet} ref="pet">
               <option value="" disabled>-- Choose Pet Wisely --</option>
               <option value="owl">Owl</option>
               <option value="cat">Cat</option>

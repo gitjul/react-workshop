@@ -29,6 +29,10 @@ class API {
     return students;
   }
 
+  getStudent(id) {
+    return students.find(student => student.id == id);
+  }
+
   addStudent(name, surname, house, pet) {
     const student = this.buildStudent(name, surname, house, pet);
     const validator = new Validator(student);
@@ -38,7 +42,6 @@ class API {
     } else {
       return {errors: validator.errors()}
     }
-
   }
 
   editStudent(id, name, surname, house, pet) {

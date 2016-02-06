@@ -7,7 +7,7 @@ import API from '../lib/API';
 import history from '../history.js';
 import StudentForm from '../components/shared/StudentForm.js';
 
-class Enroll extends React.Component {
+class EditStudent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,10 +15,16 @@ class Enroll extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({
+      student: new API().getStudent(this.props.params.id)
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
-    const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
+    const result = new API().editStudent(student.id, student.name, student.surname, student.house, student.pet)
     if(result["errors"]) {
       this.setErrors(result.errors);
     } else {
@@ -33,4 +39,4 @@ class Enroll extends React.Component {
   }
 }
 
-export default Enroll;
+export default EditStudent;

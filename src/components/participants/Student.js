@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Student extends React.Component {
   studentName() {
@@ -7,7 +8,8 @@ class Student extends React.Component {
   }
 
   render() {
-    const { house, pet } = this.props.data;
+    console.log(this.props.data);
+    const { id, house, pet } = this.props.data;
 
     return (
       <li className="student-item">
@@ -19,6 +21,9 @@ class Student extends React.Component {
         <p>
           <strong> Pet Companion: </strong>
           {pet}
+        </p>
+        <p>
+          <Link to={`/edit/${id}`} >Edit</Link>
         </p>
       </li>
     )
