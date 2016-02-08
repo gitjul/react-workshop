@@ -9,13 +9,6 @@ import history from '../../history.js';
 class StudentForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      errors: null
-    }
-  }
-
-  setErrors(errors) {
-    this.setState({errors: errors})
   }
 
   value() {
@@ -23,14 +16,12 @@ class StudentForm extends React.Component {
   }
 
   render() {
-    const { errors } = this.state;
-
     return (
       <div>
         <Menu activeButton={MenuButtonNames.ENROLL} />
         <form>
-          <BasicInfo student={this.props.student} ref="basic" errors={errors} />
-          <Preferences student={this.props.student} ref="preferences" errors={errors} />
+          <BasicInfo student={this.props.student} ref="basic" errors={this.props.errors} />
+          <Preferences student={this.props.student} ref="preferences" errors={this.props.errors} />
           <div className="action-holder">
             <input type="submit" value="Save" onClick={this.props.handleSubmit.bind(this)} />
           </div>

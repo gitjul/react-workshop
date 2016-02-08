@@ -11,11 +11,16 @@ class Enroll extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: null,
       student: {
         house: "",
         pet: ""
       }
     }
+  }
+
+  setErrors(errors) {
+    this.setState({errors: errors})
   }
 
   redirectToList() {
@@ -34,8 +39,10 @@ class Enroll extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
-      <StudentForm student={this.state.student} handleSubmit={this.handleSubmit.bind(this)} ref="student" />
+      <StudentForm student={this.state.student} errors={errors} handleSubmit={this.handleSubmit.bind(this)} ref="student" />
     )
   }
 }

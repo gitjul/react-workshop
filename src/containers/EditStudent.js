@@ -11,6 +11,7 @@ class EditStudent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: null,
       student: {}
     }
   }
@@ -19,6 +20,10 @@ class EditStudent extends React.Component {
     this.setState({
       student: new API().getStudent(this.props.params.id)
     });
+  }
+
+  setErrors(errors) {
+    this.setState({errors: errors})
   }
 
   redirectToList() {
@@ -37,8 +42,10 @@ class EditStudent extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
-      <StudentForm student={this.state.student} handleSubmit={this.handleSubmit.bind(this)} ref="student"/>
+      <StudentForm student={this.state.student} errors={errors} handleSubmit={this.handleSubmit.bind(this)} ref="student"/>
     )
   }
 }
