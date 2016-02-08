@@ -12,7 +12,8 @@ class StudentForm extends React.Component {
   }
 
   value() {
-    return Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
+    const id = { id: this.props.student.id }
+    return Object.assign({}, id, this.refs.basic.value(), this.refs.preferences.value())
   }
 
   render() {
