@@ -18,9 +18,13 @@ class Enroll extends React.Component {
     }
   }
 
+  redirectToList() {
+    return history.pushState(null, "/participants");
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const student = Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
+    const student = Object.assign({}, this.refs.student.value())
     const result = new API().addStudent(student.name, student.surname, student.house, student.pet)
     if(result["errors"]) {
       this.setErrors(result.errors);
@@ -31,7 +35,7 @@ class Enroll extends React.Component {
 
   render() {
     return (
-      <StudentForm student={this.state.student} handleSubmit={this.handleSubmit.bind(this)} />
+      <StudentForm student={this.state.student} handleSubmit={this.handleSubmit.bind(this)} ref="student" />
     )
   }
 }

@@ -18,8 +18,8 @@ class StudentForm extends React.Component {
     this.setState({errors: errors})
   }
 
-  redirectToList() {
-    return history.pushState(null, "/participants");
+  value() {
+    return Object.assign({}, this.refs.basic.value(), this.refs.preferences.value())
   }
 
   render() {

@@ -8,14 +8,13 @@ class Student extends React.Component {
   }
 
   render() {
-    console.log(this.props.data);
     const { id, house, pet } = this.props.data;
 
     return (
       <li className="student-item">
         <h2>{this.studentName()}</h2>
         <p>
-          <strong>House:</strong>
+          <strong> House: </strong>
           {house}
         </p>
         <p>

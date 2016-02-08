@@ -45,10 +45,10 @@ class Preferences extends React.Component {
           <div className="select-wrapper">
             <select name="house" defaultValue={house} ref="house">
               <option value="" disabled>-- Our choices show what we truly are --</option>
-              <option value="gryffindor">Gryffindor</option>
-              <option value="slytherin">Slytherin</option>
-              <option value="ravenclaw">Raveclaw</option>
-              <option value="hufflepuff">Hufflepuff</option>
+              <option value="Gryffindor">Gryffindor</option>
+              <option value="Slytherin">Slytherin</option>
+              <option value="Ravenclaw">Raveclaw</option>
+              <option value="Hufflepuff">Hufflepuff</option>
             </select>
           </div>
           <label htmlFor="pet">Pet Companion</label>
@@ -56,11 +56,11 @@ class Preferences extends React.Component {
           <div className="select-wrapper">
             <select name="pet" defaultValue={pet} ref="pet">
               <option value="" disabled>-- Choose Pet Wisely --</option>
-              <option value="owl">Owl</option>
-              <option value="cat">Cat</option>
-              <option value="unicorn">Unicorn</option>
-              <option value="toad">Toad</option>
-              <option value="snake">Snake</option>
+              <option value="Owl">Owl</option>
+              <option value="Cat">Cat</option>
+              <option value="Unicorn">Unicorn</option>
+              <option value="Toad">Toad</option>
+              <option value="Snake">Snake</option>
             </select>
           </div>
         </div>
