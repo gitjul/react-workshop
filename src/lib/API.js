@@ -49,6 +49,7 @@ class API {
     const validator = new Validator(student);
     if(validator.isValid()) {
       students = [...students.filter(student => student.id !== id), student];
+      this._sortStudentsById();
       return student;
     } else {
       return {errors: validator.errors()}
@@ -67,6 +68,10 @@ class API {
 
   nextId() {
     return students.sort((a, b) => b.id > a.id)[0].id + 1;
+  }
+
+  _sortStudentsById() {
+    students = students.sort((a, b) => a.id > b.id);
   }
 }
 
